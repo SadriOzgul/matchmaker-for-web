@@ -1,13 +1,159 @@
 <!DOCTYPE html>
-<html lang="en"> 
-<head>
-  <title>Matchmaker</title>
-  <meta charset="UTF-8">
-</head>
-<body>
+<html lang="en">
+    <!-- Credit to Eric Pouge and W3 Schools as him and W3 schools are a big help for this!
 
-   <h1>Version 2</h1>
-   <p>This is a paragraph.</p>
+Author: Sadri Ozgul 
+Project: MatchmakerWeb
+
+All rights reserved.-->
+<head>
+    <meta charset="UTF-8">
+    <title>Matchmaker Lite</title>
+</head>
+
+<body>
+    <h1>Matchmaker Lite</h1>
+    <p>Instructions: This program figures out if you and I are meant to be.
+        You will answer 5 questions. To each question, answer 5
+        if you strongly agree, 4 if you agree, 3 if you neither
+        agree nor disagree, 2 if you disagree, and 1 if you
+        strongly disagree.
+        
+        Our happiness depends on you. Don't let us down ...</p>
+
+
+    <label>Sony's Playstation consoles carry the best exclusive video games of all time!</label>
+    <select id="q1">
+      <option value="5">Strongly Agree</option>
+      <option value="4">Agree</option>
+      <option value="3">Neither agree nor disagree</option>
+      <option value="2">Disagree</option>
+      <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+
+    <label>The Truman Show is one of the grestest classic movies of all time.</label>
+    <select id="q2">
+      <option value="5">Strongly Agree</option>
+      <option value="4">Agree</option>
+      <option value="3">Neither agree nor disagree</option>
+      <option value="2">Disagree</option>
+      <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+
+    <label>Cross Country and/or Track, very good sport or sports to be a part of.</label>
+    <select id="q3">
+      <option value="5">Strongly Agree</option>
+      <option value="4">Agree</option>
+      <option value="3">Neither agree nor disagree</option>
+      <option value="2">Disagree</option>
+      <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+
+    <label>Going outside is a great thing to do during the day.</label>
+    <select id="q4">
+      <option value="5">Strongly Agree</option>
+      <option value="4">Agree</option>
+      <option value="3">Neither agree nor disagree</option>
+      <option value="2">Disagree</option>
+      <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+
+    <label>I enjoy Biology! </label>
+    <select id="q5">
+      <option value="5">Strongly Agree</option>
+      <option value="4">Agree</option>
+      <option value="3">Neither agree nor disagree</option>
+      <option value="2">Disagree</option>
+      <option value="1">Strongly Disagree</option>
+    </select>
+
+
+    <br /><br /><br />
+    <button onclick ="calculateCompatibility()"> Calculate Compatibility</button>
+    <p id="compatibility"> </p>
+
+<script>
+console.log("Starting Matchmaker Lite...");
+
+function calculateCompatibility() {
+    console.log("calculateCompatibility()");
+
+    const DESIRED_RESPONSE = [
+        4, /* agree */
+        3, /* agree */
+        5, /* strongly agree */
+        2, /* disagree */
+        1, /* Strongly disagree */
+       
+      ]
+
+      const MAX_SCORE = 20;
+
+
+
+    let question1Response = document.getElementById('q1').selectedOptions[0].value;
+    let question2Response = document.getElementById('q2').selectedOptions[0].value;
+    let question3Response = document.getElementById('q3').selectedOptions[0].value;
+    let question4Response = document.getElementById('q4').selectedOptions[0].value;
+    let question5Response = document.getElementById('q5').selectedOptions[0].value;
+
+    console.log("Question 1 Answers:");
+    console.log(document.getElementById('q1').selectedOptions[0].text);
+    console.log(document.getElementById('q1').selectedOptions[0].value);
+    console.log(question1Response);
+
+    console.log("Question 2 Answers:");
+    console.log(document.getElementById('q2').selectedOptions[0].text);
+    console.log(document.getElementById('q2').selectedOptions[0].value);
+    console.log(question2Response);
+
+    console.log("Question 3 Answers:");
+    console.log(document.getElementById('q3').selectedOptions[0].text);
+    console.log(document.getElementById('q3').selectedOptions[0].value);
+    console.log(question3Response);
+
+    console.log("Question 4 Answers:");
+    console.log(document.getElementById('q4').selectedOptions[0].text);
+    console.log(document.getElementById('q4').selectedOptions[0].value);
+    console.log(question4Response);
+
+    console.log("Question 5 Answers:");
+    console.log(document.getElementById('q5').selectedOptions[0].text);
+    console.log(document.getElementById('q5').selectedOptions[0].value);
+    console.log(question5Response);
+
+    let question1Combatibility = 4 - Math.abs(question1Response - DESIRED_RESPONSE[0]);
+    let question2Combatibility = 4 - Math.abs(question2Response - DESIRED_RESPONSE[1]);
+    let question3Combatibility = 4 - Math.abs(question3Response - DESIRED_RESPONSE[2]);
+    let question4Combatibility = 4 - Math.abs(question4Response - DESIRED_RESPONSE[3]);
+    let question5Combatibility = 4 - Math.abs(question5Response - DESIRED_RESPONSE[4]);
+
+    console.log("c1="+question1Combatibility);
+    console.log("c2="+question2Combatibility);
+    console.log("c3="+question3Combatibility);
+    console.log("c4="+question4Combatibility);
+    console.log("c5="+question5Combatibility);
+
+    let totalCompatibility = question1Combatibility + question2Combatibility + question3Combatibility + question4Combatibility + question5Combatibility;
+
+    totalCompatibility *= 100 / MAX_SCORE; 
+    totalCompatibility = Math.round (totalCompatibility); 
+    console.log("tc=" + totalCompatibility);
+
+
+
+
+
+
+    document.getElementById("compatibility").innerHTML = "Your compatibility is:" + totalCompatibility;
+    
+
+  }
+</script>
 
 </body>
 </html>

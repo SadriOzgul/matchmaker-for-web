@@ -5,22 +5,29 @@
 Author: Sadri Ozgul 
 Project: MatchmakerWeb
 
-All rights reserved.-->
+-->
 <head>
     <meta charset="UTF-8">
-    <title>Matchmaker Lite</title>
+    <title>Matchmaker!</title>
 </head>
 
 <body>
-    <h1>Matchmaker Lite</h1>
+    <h1>Matchmaker!</h1>
     <p>Instructions: This program figures out if you and I are meant to be.
-        You will answer 5 questions. To each question, answer 5
-        if you strongly agree, 4 if you agree, 3 if you neither
-        agree nor disagree, 2 if you disagree, and 1 if you
-        strongly disagree.
+        You will answer 5 questions. </p>
         
-        Our happiness depends on you. Don't let us down ...</p>
-
+        <p>To each question: </p>
+      
+        <ul>
+        <li> 5 if you strongly agree </li>
+         <li>4 if you Agree</li>
+         <li> 3 if you neither
+             agree nor disagree</li>
+        <li> 2 if you disagree</li>
+        <li> 1 if you strongly disagree.</li>
+        </ul>
+        
+       <p> Our happiness depends on you. Don't let us down ... </p>
 
     <label>Sony's Playstation consoles carry the best exclusive video games of all time!</label>
     <select id="q1">
@@ -71,29 +78,25 @@ All rights reserved.-->
       <option value="1">Strongly Disagree</option>
     </select>
 
-
     <br /><br /><br />
     <button onclick ="calculateCompatibility()"> Calculate Compatibility</button>
     <p id="compatibility"> </p>
 
 <script>
-console.log("Starting Matchmaker Lite...");
+console.log("Starting Matchmaker...");
 
 function calculateCompatibility() {
     console.log("calculateCompatibility()");
 
     const DESIRED_RESPONSE = [
-        4, /* agree */
-        3, /* agree */
         5, /* strongly agree */
-        2, /* disagree */
-        1, /* Strongly disagree */
-       
-      ]
+        4, /* agree */
+        4, /* agree */
+        4, /* agree */
+        1, /* Strongly disagree */ 
+    ]
 
-      const MAX_SCORE = 20;
-
-
+    const MAX_SCORE = 25;
 
     let question1Response = document.getElementById('q1').selectedOptions[0].value;
     let question2Response = document.getElementById('q2').selectedOptions[0].value;
@@ -126,11 +129,11 @@ function calculateCompatibility() {
     console.log(document.getElementById('q5').selectedOptions[0].value);
     console.log(question5Response);
 
-    let question1Combatibility = 4 - Math.abs(question1Response - DESIRED_RESPONSE[0]);
-    let question2Combatibility = 4 - Math.abs(question2Response - DESIRED_RESPONSE[1]);
-    let question3Combatibility = 4 - Math.abs(question3Response - DESIRED_RESPONSE[2]);
-    let question4Combatibility = 4 - Math.abs(question4Response - DESIRED_RESPONSE[3]);
-    let question5Combatibility = 4 - Math.abs(question5Response - DESIRED_RESPONSE[4]);
+    let question1Combatibility = 5 - Math.abs(question1Response - DESIRED_RESPONSE[0]);
+    let question2Combatibility = 5 - Math.abs(question2Response - DESIRED_RESPONSE[1]);
+    let question3Combatibility = 5 - Math.abs(question3Response - DESIRED_RESPONSE[2]);
+    let question4Combatibility = 5 - Math.abs(question4Response - DESIRED_RESPONSE[3]);
+    let question5Combatibility = 5 - Math.abs(question5Response - DESIRED_RESPONSE[4]);
 
     console.log("c1="+question1Combatibility);
     console.log("c2="+question2Combatibility);
@@ -145,13 +148,20 @@ function calculateCompatibility() {
     console.log("tc=" + totalCompatibility);
 
 
+  document.getElementById("compatibility").innerHTML = "Your compatibility is:" + totalCompatibility;
 
+  if (totalCompatibility >= 90) {
 
+  document.getElementById("compatibility").innerHTML = "Your compatibility is:" + totalCompatibility + "\n" + "Were a Match!";
 
+ } else if (totalCompatibility >= 60 ) {
+  document.getElementById("compatibility").innerHTML = "Your compatibility is:" + totalCompatibility + "\n" + "I think we are going to be good friends.";
 
-    document.getElementById("compatibility").innerHTML = "Your compatibility is:" + totalCompatibility;
+} else {
+  document.getElementById("compatibility").innerHTML = "Your compatibility is:" + totalCompatibility + "\n" + "Yeah we're not going to get along very well...";
+
+}
     
-
   }
 </script>
 
